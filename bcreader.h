@@ -7,10 +7,10 @@
 #if  !defined (__MS7120BS__) 
 #define  __MS7120BS__
 
+#define  HEADER   fprintf (stdout ," METROLOGIC INSTRUMENT _MS7120BS\n")
+
 #define  BCR_MAX_LENGHT  0xff 
 #define  DECIMAL_BASE    0x0a  
-
-
 
 #ifdef  FR_KB  
 
@@ -29,11 +29,12 @@
 
 
 unsigned char  *init( unsigned  char  __symb[]  , size_t  __digit_base_type )   ;  
-
  
-static void  flush_buffer (  void )  ; 
+static void  flush_buffer ( )  ; 
 
-char * read_in (char * restrict  __bc_buffer )  ; 
+char * read_in (char * restrict  __bc_buffer )  ;  
+
+char *translate ( const char* __string   , const char __kb_symbole []  , size_t size) ; 
 
 
 #endif  
