@@ -29,9 +29,16 @@ unsigned char *init (unsigned char __symb[]   , size_t  __size ) {
     return     __symb ; 
 } 
 
+static  void flush_buffer  ( )   {  
+    char c  ; 
+    while ( c!= 0xa  && c!=0 )  
+    {
+        c = getchar() ; 
+    }
+} 
 
 char  * read_in (char  *restrict bc_buffer   ) { 
-   
+
    if ( !fgets(bc_buffer ,  BCR_MAX_LENGHT ,  stdin )) 
    {  
        exit(EXIT_FAILURE) ; 
@@ -43,7 +50,40 @@ char  * read_in (char  *restrict bc_buffer   ) {
        exit(EXIT_FAILURE)  ;  
 
    *jmp = '\0' ;
+   
+   flush_buffer() ; 
 
    return   bc_buffer ;  
 
+}  
+
+char * translate ( const char * srcstr   , const char kbs []  ,  size_t size ) {  
+   
+    char  *source =  (char*) srcstr  ;  
+    char  *keyboard_numpad = (char *) kbs ;  
+    char i  = 0  ; 
+
+    int  begin= 0  ; 
+    while (*source) 
+    {
+        if ( *kbs ==   *source) 
+        { 
+            *source  = i; 
+            
+        }
+        kbs++ ; 
+        i++;  
+        if (!*kbs) 
+        {
+            i=0  ; 
+            kbs =  keyboard_numpad ;  
+            source++ ;
+            begin++;   
+        }
+    }
+    
+    source  =  (char *) source - begin ;  
+     
+    for ( ; *source != 0  ;  source++ )  
+       printf(" source %i\n" ,   *source ) ;  
 } 
