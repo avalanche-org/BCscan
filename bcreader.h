@@ -14,16 +14,16 @@
 
 #ifdef  FR_KB  
 
-#define  _ZERO   0xe0 
-#define  _ONE    0x26  
-#define  _TWO    0xe9 
-#define  _THREE  0x22
-#define  _FOUR   0x27 
-#define  _FIVE   0x28
-#define  _SIX    0x2d
-#define  _SEVEN  0xe8 
-#define  _EIGHT  0x5f
-#define  _NINE   0xe7 
+#define  _ZERO   'à'
+#define  _ONE    '&'  
+#define  _TWO    'é' 
+#define  _THREE  '"'
+#define  _FOUR   '''
+#define  _FIVE   '('
+#define  _SIX    '-'
+#define  _SEVEN  'è'
+#define  _EIGHT  '_'
+#define  _NINE   'ç' 
 
 #endif  
 

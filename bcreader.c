@@ -60,16 +60,21 @@ char  * read_in (char  *restrict bc_buffer   ) {
 char * translate ( const char * srcstr   , const char kbs []  ,  size_t size ) {  
    
     char  *source =  (char*) srcstr  ;  
-    char  *keyboard_numpad = (char *) kbs ;  
-    char i  = 0  ; 
+    char  *keyboard_numpad = (char *) kbs ; 
+    int   asize =  strlen(srcstr)+1 ; 
+    int   *position_index  = malloc(asize  *  sizeof(char))  ;  
+
+    int   o =  0 ; 
+    int   i  = 0 ; 
+            
 
     int  begin= 0  ; 
     while (*source) 
     {
-        if ( *kbs ==   *source) 
+        if ( *kbs == *source) 
         { 
-            *source  = i; 
-            
+            position_index[o]  =  i ;  
+            o++ ; 
         }
         kbs++ ; 
         i++;  
@@ -81,9 +86,13 @@ char * translate ( const char * srcstr   , const char kbs []  ,  size_t size ) {
             begin++;   
         }
     }
-    
+
     source  =  (char *) source - begin ;  
-     
-    for ( ; *source != 0  ;  source++ )  
-       printf(" source %i\n" ,   *source ) ;  
+
+    for   ( int i  = 0 ; i  < asize ; i++ )  
+        fprintf(stdout , "[ %i ]" , position_index[i] ) ; 
+
+    puts("") ;  
+    free(position_index) ; 
+   return  source ;  
 } 
